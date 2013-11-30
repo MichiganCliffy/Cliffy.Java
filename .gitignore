@@ -1,0 +1,14 @@
+syntax: regexp
+target      # maven output
+\.settings  # eclipse
+test-output # eclipse junit/testng plugin output
+\.metadata
+\Servers
+\.hg
+
+syntax: glob
+*.class
+*.jar
+*struts2-*
+*.project
+.hgignore

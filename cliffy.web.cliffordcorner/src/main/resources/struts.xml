@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="true" />
+	
+
+<!-- 
+	<constant name="struts.convention.package.locators" value="controllers"/>
+	<constant name="struts.convention.action.suffix" value="Controller"/>
+-->
+
+    <package extends="struts-default,json-default" name="ajax-package">
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+        </result-types>
+        <action name="PhotoServices" class="cliffy.web.cliffordcorner.controllers.PhotoServicesController">
+		    <result type="json" />
+		</action>
+		<action name="" class="cliffy.web.cliffordcorner.controllers.HomeController">
+			<result name="success" type="tiles">home.tiles</result>
+		</action>
+		<action name="home" class="cliffy.web.cliffordcorner.controllers.HomeController">
+			<result name="success" type="tiles">home.tiles</result>
+		</action>
+		<action name="album" class="cliffy.web.cliffordcorner.controllers.AlbumController" method="execute">
+			<result name="success" type="tiles">album.tiles</result>
+		</action>
+    </package>
+</struts>

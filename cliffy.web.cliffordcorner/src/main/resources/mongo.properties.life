@@ -1,0 +1,4 @@
+server=ds029338.mongolab.com:29338
+database=cliffy
+username=cliffy_user
+password=cliffy!

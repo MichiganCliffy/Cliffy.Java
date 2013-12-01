@@ -1,5 +1,5 @@
 syntax: regexp
-target      # maven output
+\target      # maven output
 \.settings  # eclipse
 test-output # eclipse junit/testng plugin output
 \.metadata
@@ -13,3 +13,4 @@ syntax: glob
 *.project
 .hgignore
 .classpath
+*/target/*

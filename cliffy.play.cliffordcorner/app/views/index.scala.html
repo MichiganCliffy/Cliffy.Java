@@ -1,7 +1,13 @@
-@(message: String)
+@(posts: cliffy.common.Blog)
 
 @main("Welcome to Play") {
-
-    @play20.welcome(message, style = "Java")
-
+	@for(post <- posts) {
+	
+		<div class="post">
+		<h2>@post.getTitle()</h2>
+		@Html(post.getDescription())
+		<br style="clear: both;" />
+		</div>
+	
+	}
 }

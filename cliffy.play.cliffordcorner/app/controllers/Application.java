@@ -1,14 +1,19 @@
 package controllers;
 
-import play.*;
 import play.mvc.*;
-
 import views.html.*;
+import cliffy.common.*;
+import cliffy.data.*;
+import models.*;
 
 public class Application extends Controller {
 
     public static Result index() {
-        return ok(index.render("Your new application is ready."));
+		IBlogRepository repo = Repositories.getBlogRepository();
+		String[] tags = {};
+		Blog posts = repo.getPosts(tags);
+		
+        return ok(index.render(posts));
     }
 
 }

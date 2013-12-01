@@ -1,10 +1,13 @@
-package cliffy.data.blogger;
+package models;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.Properties;
 
-public class BloggerPropertiesFromFile implements IBloggerProperties {
+import play.api.Play;
+import cliffy.data.blogger.IBloggerProperties;
+
+public class BloggerPropertiesFromPlay implements IBloggerProperties {
     private Properties properties = null;
 
 	@Override
@@ -17,12 +20,12 @@ public class BloggerPropertiesFromFile implements IBloggerProperties {
 		return Integer.parseInt(this.properties.getProperty("cacheDuration"));
 	}
 	
-	public BloggerPropertiesFromFile() {
+	public BloggerPropertiesFromPlay() {
 		loadProperties();
 	}
 	
 	protected void loadProperties() {
-		ClassLoader loader = Thread.currentThread().getContextClassLoader();
+		ClassLoader loader = Play.current().classloader();
 		URL propertyFileURL = loader.getResource("blogger.properties");
 		loadPropertiesFile(propertyFileURL);
 	}

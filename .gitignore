@@ -12,3 +12,4 @@ syntax: glob
 *struts2-*
 *.project
 .hgignore
+.classpath

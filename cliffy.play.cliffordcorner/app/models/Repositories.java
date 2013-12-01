@@ -2,6 +2,7 @@ package models;
 
 import cliffy.data.*;
 import cliffy.data.blogger.*;
+import cliffy.data.mongo.*;
 
 public final class Repositories {
 	public static ICacheRepository getCacheRepository() {
@@ -9,7 +10,12 @@ public final class Repositories {
 	}
 	
 	public static IBlogRepository getBlogRepository() {
-		IBloggerProperties properties = new BloggerPropertiesFromPlay();
+		IBloggerProperties properties = new BloggerPropertiesForPlay();
 		return new BloggerBlogRepository(getCacheRepository(), properties);
+	}
+	
+	public static IPhotographRepository getPhotoRepository() {
+		IMongoProperties properties = new MongoPropertiesForPlay();
+		return new MongoPhotographRepository(properties);
 	}
 }

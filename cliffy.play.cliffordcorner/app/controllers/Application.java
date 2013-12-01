@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.ArrayList;
+
 import play.mvc.*;
 import views.html.*;
 import cliffy.common.*;
@@ -16,4 +18,12 @@ public class Application extends Controller {
         return ok(index.render(posts));
     }
 
+    public static Result album() {
+    	IPhotographRepository repo = Repositories.getPhotoRepository();
+    	ArrayList<String> tags = new ArrayList<String>();
+    	String setId = "Pool";
+    	PhotographAlbum photos = repo.getAlbum(tags, setId);
+    	
+    	return ok(album.render(photos));
+    }
 }

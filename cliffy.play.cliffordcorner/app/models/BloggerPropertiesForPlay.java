@@ -7,7 +7,7 @@ import java.util.Properties;
 import play.api.Play;
 import cliffy.data.blogger.IBloggerProperties;
 
-public class BloggerPropertiesFromPlay implements IBloggerProperties {
+public class BloggerPropertiesForPlay implements IBloggerProperties {
     private Properties properties = null;
 
 	@Override
@@ -20,17 +20,17 @@ public class BloggerPropertiesFromPlay implements IBloggerProperties {
 		return Integer.parseInt(this.properties.getProperty("cacheDuration"));
 	}
 	
-	public BloggerPropertiesFromPlay() {
+	public BloggerPropertiesForPlay() {
 		loadProperties();
 	}
 	
-	protected void loadProperties() {
+	private void loadProperties() {
 		ClassLoader loader = Play.current().classloader();
 		URL propertyFileURL = loader.getResource("blogger.properties");
 		loadPropertiesFile(propertyFileURL);
 	}
 	
-	protected void loadPropertiesFile(URL propertyFileURL) {
+	private void loadPropertiesFile(URL propertyFileURL) {
 		properties = new Properties();
 		if (propertyFileURL != null) {
 	    	try {

@@ -11,7 +11,8 @@ libraryDependencies ++= Seq(
   javaEbean,
   cache,
   "cliffy.common" % "cliffy.common" % "0.0.1-SNAPSHOT",
-  "cliffy.data" % "cliffy.data" % "0.0.1-SNAPSHOT"
+  "cliffy.data" % "cliffy.data" % "0.0.1-SNAPSHOT",
+  "commons-configuration" % "commons-configuration" % "1.10"
 )     
 
 play.Project.playJavaSettings

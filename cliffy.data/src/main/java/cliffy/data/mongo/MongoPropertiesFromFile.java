@@ -2,41 +2,19 @@ package cliffy.data.mongo;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Properties;
 
-public class MongoPropertiesFromFile implements IMongoProperties {
-    private Properties properties = null;
-
-	@Override
-	public String getServer() {
-		return this.properties.getProperty("server");
-	}
-
-	@Override
-	public String getUsername() {
-		return this.properties.getProperty("username");
-	}
-
-	@Override
-	public String getPassword() {
-		return this.properties.getProperty("password");
-	}
-
-	@Override
-	public String getDatabase() {
-		return this.properties.getProperty("database");
-	}
-	
+public class MongoPropertiesFromFile extends MongoPropertiesBase implements IMongoProperties {
 	public MongoPropertiesFromFile() {
 		loadProperties();
 	}
 	
 	private void loadProperties() {
-		properties = new Properties();
-		
-		//URL propertyFileURL = getClass().getClassLoader().getResource("mongoConfig.properties");
-		URL propertyFileURL = Thread.currentThread().getContextClassLoader().getResource("mongo.properties");
-
+		ClassLoader loader = Thread.currentThread().getContextClassLoader();
+		URL propertyFileURL = loader.getResource("mongo.properties");
+		loadPropertiesFile(propertyFileURL);
+	}
+	
+	private void loadPropertiesFile(URL propertyFileURL) {
 		if (propertyFileURL != null) {
 	    	try {
 	    		properties.load(propertyFileURL.openStream());

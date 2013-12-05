@@ -1,6 +1,6 @@
 package controllers;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import play.mvc.*;
 import views.html.*;
@@ -15,15 +15,10 @@ public class Application extends Controller {
 		String[] tags = {};
 		Blog posts = repo.getPosts(tags);
 		
-        return ok(index.render(posts));
+        return ok(index.render(posts, getNav()));
     }
-
-    public static Result album() {
-    	IPhotographRepository repo = Repositories.getPhotoRepository();
-    	ArrayList<String> tags = new ArrayList<String>();
-    	String setId = "Pool";
-    	PhotographAlbum photos = repo.getAlbum(tags, setId);
-    	
-    	return ok(album.render(photos));
+    
+    private static CliffordCornerNav getNav() {
+    	return new CliffordCornerNav();
     }
 }

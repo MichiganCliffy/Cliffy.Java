@@ -11,7 +11,8 @@ public final class Repositories {
 	
 	public static IBlogRepository getBlogRepository() {
 		IBloggerProperties properties = new BloggerPropertiesForPlay();
-		return new BloggerBlogRepository(getCacheRepository(), properties);
+		//return new BloggerBlogRepository(getCacheRepository(), properties);
+		return new LocalBlogRepository(properties);
 	}
 	
 	public static IPhotographRepository getPhotoRepository() {

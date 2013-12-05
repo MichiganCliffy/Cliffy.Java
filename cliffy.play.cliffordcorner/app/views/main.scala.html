@@ -1,4 +1,4 @@
-@(title: String)(content: Html)
+@(title: String)(nav: models.CliffordCornerNav)(content: Html)
 
 <!DOCTYPE html>
 
@@ -27,13 +27,23 @@
 						<div class="collapse navbar-collapse">
 							<ul class="nav navbar-nav">
 								<li class="@if(request.path == routes.Application.index.url) {active}"><a href="@routes.Application.index">Home</a></li>
-								<li class="@if(request.path == routes.Application.album.url) {active}"><a href="/photographs">Photographs</a></li>
+@for(item <- nav.getFeatured()) {
+								<li class="@if(request.path == item.getAction()) {active}"><a href="@item.getAction()">@item.getTitle()</a></li>
+}
+								<li>
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
+									<ul class="dropdown-menu">
+@for(item <- nav.getMore()) {
+		                				<li class="@if(request.path == item.getAction()) {active}"><a href="@item.getAction()">@item.getTitle()</a></li>
+}
+					</s:iterator>
+					</ul>
+				</li>
 							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
-
 
 			<div class="content" style="float: none;">
 				@content

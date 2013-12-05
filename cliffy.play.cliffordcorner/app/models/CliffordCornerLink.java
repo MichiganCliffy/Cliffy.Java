@@ -5,6 +5,7 @@ public class CliffordCornerLink {
 	private String title;
 	private int sortOrder;
 	private String description;
+	private String action;
 
 	public String getId() {
 		return id;
@@ -36,5 +37,13 @@ public class CliffordCornerLink {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getAction() {
+		return action;
+	}
+
+	public void setAction(String action) {
+		this.action = action;
 	}
 }

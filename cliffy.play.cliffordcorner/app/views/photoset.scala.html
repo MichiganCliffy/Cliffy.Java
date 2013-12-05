@@ -1,0 +1,33 @@
+@(album: cliffy.common.PhotographAlbum)(nav: models.CliffordCornerNav)
+
+@main("Welcome to Play")(nav) {
+<div class="row row-offcanvas row-offcanvas-right">
+<div class="content col-xs-12 col-sm-9">
+
+<p class="pull-right visible-xs">
+	<button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle tags</button>
+</p>
+
+<h1>@album.getTitle()</h1>
+
+@Html(album.getDescription())
+
+<p></p>
+
+<div class="row">
+@for(photo <- album.getPhotographs()) {
+<div class="col-xs-3 col-md-2"><a href="#" class="thumbnail"><img src="@photo.getThumbnail()" title="@photo.getTitle()" /></a></div>
+}
+</div>
+
+</div>
+
+<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+<div class="list-group">
+@for(tag <- album.getTags()) {
+<a href="#" class="list-group-item">@tag</a>
+}
+</div>
+</div><!--/span-->
+</div>
+}

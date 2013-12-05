@@ -4,8 +4,9 @@
 
 # Home page
 GET     /                           controllers.Application.index()
-GET		/photographs				controllers.Application.album()
-GET		/album						controllers.Application.album()
+GET		/photographs				controllers.PhotoGroup.index()
+GET		/album						controllers.PhotoSet.index()
+GET		/album/:setId				controllers.PhotoSet.photoset(setId: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

@@ -1,6 +1,6 @@
-@(posts: cliffy.common.Blog)
+@(posts: cliffy.common.Blog)(nav: models.CliffordCornerNav)
 
-@main("Welcome to Play") {
+@main("Welcome to Play")(nav) {
 	@for(post <- posts) {
 	
 		<div class="post">

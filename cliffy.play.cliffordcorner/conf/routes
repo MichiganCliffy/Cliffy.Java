@@ -3,10 +3,15 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index()
-GET		/photographs				controllers.PhotoGroup.index()
-GET		/album						controllers.PhotoSet.index()
-GET		/album/:setId				controllers.PhotoSet.photoset(setId: String)
+GET     /                           	controllers.Application.index()
+GET		/photographs					controllers.PhotoGroup.index()
+GET		/photographs/page/:page			controllers.PhotoGroup.filtered(tag: String = "", page: Int)
+GET		/photographs/:tag				controllers.PhotoGroup.filtered(tag: String, page: Int = 1)
+GET		/photographs/:tag/page/:page	controllers.PhotoGroup.filtered(tag: String, page: Int)
+GET		/photograph/:secret/:photoId	controllers.PhotoGroup.photo(secret: String, photoId: String)
+GET		/video/:secret/:photoId			controllers.PhotoGroup.video(secret: String, photoId: String)
+GET		/album							controllers.PhotoSet.index()
+GET		/album/:setId					controllers.PhotoSet.photoset(setId: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

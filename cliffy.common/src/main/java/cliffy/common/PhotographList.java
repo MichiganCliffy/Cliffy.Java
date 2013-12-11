@@ -30,6 +30,7 @@ public final class PhotographList {
 	}
 	
 	public static List<Photograph> page(List<Photograph> source, int count, int page) {
+		Collections.sort(source, new PhotographSorter());
 		ArrayList<Photograph> output = new ArrayList<Photograph>();
 		
         int startAt = page * count;
@@ -37,11 +38,15 @@ public final class PhotographList {
         if (endAt > source.size()) {
         	endAt = source.size();
         }
-        
+
+//		int startAt = 0;
+//		int endAt = source.size();
+
         for (int i = startAt; i < endAt; i++) {
         	output.add(source.get(i));
         }
 		
+		Collections.sort(output, new PhotographSorter());
 		return output;
 	}
 	

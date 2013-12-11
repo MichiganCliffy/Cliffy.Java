@@ -16,7 +16,11 @@
 
 <div class="row">
 @for(photo <- album.getPhotographs()) {
-<div class="col-xs-3 col-md-2"><a href="#" class="thumbnail"><img src="@photo.getThumbnail()" title="@photo.getTitle()" /></a></div>
+	@if(photo.getMedia() == "video") {
+<div class="col-xs-3 col-md-2"><a href="/video/@photo.getSecret()/@photo.getPhotoId()" class="thumbnail"><img src="@photo.getThumbnail()" title="@photo.getTitle()" /></a></div>
+	} else {
+<div class="col-xs-3 col-md-2"><a href="/photograph/@photo.getSecret()/@photo.getPhotoId()" class="thumbnail"><img src="@photo.getThumbnail()" title="@photo.getTitle()" /></a></div>
+	}
 }
 </div>
 
@@ -25,7 +29,7 @@
 <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
 <div class="list-group">
 @for(tag <- album.getTags()) {
-<a href="#" class="list-group-item">@tag</a>
+<a href="/photographs/@tag" class="list-group-item">@tag</a>
 }
 </div>
 </div><!--/span-->

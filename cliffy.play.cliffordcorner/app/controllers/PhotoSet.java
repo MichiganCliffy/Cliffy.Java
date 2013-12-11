@@ -36,6 +36,14 @@ public class PhotoSet extends Controller {
         return ok(photoset.render(photos, nav));
     }
     
+    public static Result photo(String setId, String secret, String id) {
+    	return TODO;
+    }
+    
+    public static Result video(String setId, String secret, String id) {
+    	return TODO;
+    }
+    
     private static CliffordCornerNav getNav() {
     	return new CliffordCornerNav();
     }

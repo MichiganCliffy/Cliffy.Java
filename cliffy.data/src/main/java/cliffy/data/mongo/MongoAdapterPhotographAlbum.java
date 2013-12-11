@@ -1,5 +1,6 @@
 package cliffy.data.mongo;
 
+import java.util.Collections;
 import java.util.List;
 
 import cliffy.common.*;
@@ -30,6 +31,7 @@ public class MongoAdapterPhotographAlbum {
 	}
 	
 	public void addPhotographs(List<Photograph> source, int count, int page) {
+		Collections.sort(source, new PhotographSorter());
 		List<Photograph> list = PhotographList.page(source, count, page);
 		addPhotographs(list);
 		

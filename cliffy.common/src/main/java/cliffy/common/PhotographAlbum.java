@@ -21,6 +21,7 @@ public class PhotographAlbum {
     }
     
     public List<Photograph> getPhotographs() {
+    	Collections.sort(this.photographs, new PhotographSorter());
 		return this.photographs;
 	}
     

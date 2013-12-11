@@ -1,9 +1,18 @@
 package cliffy.common;
 
-import java.util.Comparator;
+import java.util.*;
 
 public class PhotographSorter implements Comparator<Photograph> {
     public int compare(Photograph a, Photograph b) {
-    	return a.getDateSaved().compareTo(b.getDateSaved());
+    	long aDate = a.getDateSaved().getTime();
+    	long bDate = b.getDateSaved().getTime();
+    	
+    	if (aDate > bDate) {
+    		return -1;
+    	} else if (aDate < bDate) {
+    		return 1;
+    	} else {
+    		return 0;
+    	}
     }
 }

@@ -172,11 +172,14 @@ public class MongoPhotographRepository implements IPhotographRepository {
     		}
     	}
     	
-    	List<Photograph> matched = PhotographList.find(all, tags);
+    	if (tags != null && tags.size() > 0) {
+    		List<Photograph> matched = PhotographList.find(all, tags);
+        	Collections.sort(matched, new PhotographSorter());
+        	
+        	return matched;
+    	}
     	
-    	PhotographSorter sorter = new PhotographSorter();
-    	Collections.sort(matched, sorter);
-    	
-    	return matched;
+    	Collections.sort(all, new PhotographSorter());
+    	return all;
     }
 }

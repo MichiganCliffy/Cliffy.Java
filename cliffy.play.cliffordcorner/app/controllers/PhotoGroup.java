@@ -31,11 +31,15 @@ public class PhotoGroup extends Controller {
     }
     
     public static Result photo(String secret, String id) {
-    	return TODO;
+    	Photograph photo = getPhotograph(secret, id);
+		CliffordCornerNav nav = getNav();
+		return ok(photogroupphoto.render(photo, nav));
     }
     
     public static Result video(String secret, String id) {
-    	return TODO;
+    	Photograph photo = getPhotograph(secret, id);
+		CliffordCornerNav nav = getNav();
+		return ok(photogroupvideo.render(photo, nav));
     }
     
     private static CliffordCornerNav getNav() {
@@ -45,5 +49,11 @@ public class PhotoGroup extends Controller {
     private static PhotographAlbum getAlbum(List<String> tags, int page) {
     	IPhotographRepository repo = Repositories.getPhotoRepository();
     	return repo.getPhotographs(tags, 75, page);
+    }
+
+    private static Photograph getPhotograph(String secret, String id) {
+        IPhotographRepository repo = Repositories.getPhotoRepository();
+	String photoId = id + "/" + secret;
+	return repo.getPhotograph(photoId);
     }
 }

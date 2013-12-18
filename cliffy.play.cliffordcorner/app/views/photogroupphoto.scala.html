@@ -1,0 +1,29 @@
+@(photo: cliffy.common.Photograph)(nav: models.CliffordCornerNav)
+
+@main("Welcome to Play")(nav) {
+<div class="row row-offcanvas row-offcanvas-right">
+<div class="content col-xs-12 col-sm-9">
+
+<p class="pull-right visible-xs">
+	<button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle tags</button>
+</p>
+
+<h1>@photo.getTitle()</h1>
+
+<a title="@photo.getTitle()" class="spotlight" href="@photo.getUriSource()"><img src="@photo.getUri(cliffy.common.ImageSize.Medium)" alt="@photo.getTitle()" /></a>
+
+@if(photo.getDescription() != null) {
+	@Html(photo.getDescription())
+}
+
+</div>
+
+<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+<div class="list-group">
+@for(tag <- photo.getTags()) {
+<a href="/photographs/@tag" class="list-group-item">@tag</a>
+}
+</div>
+</div><!--/span-->
+</div>
+}

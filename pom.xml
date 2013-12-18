@@ -8,6 +8,6 @@
   <modules>
    <module>cliffy.common</module>
    <module>cliffy.data</module>
-    <module>cliffy.web.cliffordcorner</module>
+    <module>cliffy.struts.cliffordcorner</module>
   </modules>
 </project>

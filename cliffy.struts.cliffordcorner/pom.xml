@@ -1,9 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>cliffy.web.cliffordcorner</groupId>
-  <artifactId>cliffy.web.cliffordcorner</artifactId>
+  <groupId>cliffy.struts.cliffordcorner</groupId>
+  <artifactId>cliffy.struts.cliffordcorner</artifactId>
   <packaging>war</packaging>
-  <name>cliffy.web.cliffordcorner</name>
+  <name>cliffy.struts.cliffordcorner</name>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>

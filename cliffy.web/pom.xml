@@ -1,0 +1,29 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>cliffy</groupId>
+    <artifactId>cliffy</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <groupId>cliffy.web</groupId>
+  <artifactId>cliffy.web</artifactId>
+  <name>cliffy.web</name>
+  <description>Website based objects and rules</description>
+  <dependencies>
+  	<dependency>
+  		<groupId>cliffy.common</groupId>
+  		<artifactId>cliffy.common</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>cliffy.data</groupId>
+  		<artifactId>cliffy.data</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>commons-configuration</groupId>
+  		<artifactId>commons-configuration</artifactId>
+  		<version>1.10</version>
+  	</dependency>
+  </dependencies>
+</project>

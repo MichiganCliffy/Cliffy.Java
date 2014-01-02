@@ -1,9 +1,8 @@
-package models;
+package cliffy.web.cliffordcorner;
 
 import java.util.Comparator;
 
 public class CliffordCornerLinkSorter implements Comparator<CliffordCornerLink> {
-
 	@Override
 	public int compare(CliffordCornerLink arg0, CliffordCornerLink arg1) {
 		int arg0SortOrder = arg0.getSortOrder();

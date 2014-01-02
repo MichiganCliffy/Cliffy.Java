@@ -1,5 +1,6 @@
 package cliffy.data.mongo;
 
+import java.net.URL;
 import java.util.*;
 
 import cliffy.common.*;
@@ -23,8 +24,10 @@ public class MongoPhotographRepositoryTest extends MongoBaseTest {
     	Collections.sort(photosFromDB, new PhotographSorter());
     	assertNotSame(0, photosFromDB.size());
     	
+		ClassLoader loader = Thread.currentThread().getContextClassLoader();
+		URL propertyFile = loader.getResource("mongo.properties");
     	
-		IMongoProperties props = new MongoPropertiesWithDefaults(new MongoPropertiesFromFile());
+		IMongoProperties props = new MongoProperties(propertyFile);
     	MongoPhotographRepository repo = new MongoPhotographRepository(props);
     	ArrayList<String> tags = new ArrayList<String>();
     	PhotographAlbum album = repo.getPhotographs(tags, 75, 0);
@@ -46,7 +49,10 @@ public class MongoPhotographRepositoryTest extends MongoBaseTest {
     		expectedCount++;
     	}
 
-		IMongoProperties props = new MongoPropertiesWithDefaults(new MongoPropertiesFromFile());
+		ClassLoader loader = Thread.currentThread().getContextClassLoader();
+		URL propertyFile = loader.getResource("mongo.properties");
+    	IMongoProperties props = new MongoProperties(propertyFile);
+		
     	MongoPhotographRepository repo = new MongoPhotographRepository(props);
     	List<PhotographAlbum> albums = repo.getAlbums();
 

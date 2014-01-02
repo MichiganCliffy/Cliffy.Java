@@ -1,13 +1,8 @@
-package models;
+package cliffy.web.cliffordcorner;
 
 import java.net.URL;
 import java.util.*;
-
-import javax.naming.ConfigurationException;
-
 import org.apache.commons.configuration.*;
-
-import play.api.Play;
 
 public class CliffordCornerConfigProperties {
 	private ArrayList<CliffordCornerLink> navigation;
@@ -16,20 +11,17 @@ public class CliffordCornerConfigProperties {
 		return navigation;
 	}
 	
-	public CliffordCornerConfigProperties() {
+	public CliffordCornerConfigProperties(URL propertyFile) {
 		navigation = new ArrayList<CliffordCornerLink>();
-		loadFromConfig();
+		loadFromConfig(propertyFile);
 		
 		Collections.sort(this.navigation, new CliffordCornerLinkSorter());
 	}
 	
-	private void loadFromConfig() {
-		ClassLoader loader = Play.current().classloader();
-		URL propertyFileURL = loader.getResource("cliffordcorner.properties");
-
-		if (propertyFileURL != null) {
+	private void loadFromConfig(URL propertyFile) {
+		if (propertyFile != null) {
 			XMLConfiguration config = new XMLConfiguration();
-			config.setURL(propertyFileURL);
+			config.setURL(propertyFile);
 
 			try {
 				config.load();

@@ -1,4 +1,4 @@
-package models;
+package cliffy.web.cliffordcorner;
 
 import java.util.*;
 
@@ -22,11 +22,10 @@ public class CliffordCornerNav {
 		this.more = more;
 	}
 	
-	public CliffordCornerNav() {
+	public CliffordCornerNav(CliffordCornerConfigProperties config) {
 		this.featured = new ArrayList<CliffordCornerLink>();
 		this.more = new ArrayList<CliffordCornerLink>();
 		
-		CliffordCornerConfigProperties config = new CliffordCornerConfigProperties();
 		List<CliffordCornerLink> navigation = config.getNavigation(); 
 		this.featured.addAll(navigation.subList(0, 3));
 		this.more.addAll(navigation.subList(3, navigation.size() - 1));

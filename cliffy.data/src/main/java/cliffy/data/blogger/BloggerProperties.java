@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Properties;
 
-public class BloggerPropertiesFromFile implements IBloggerProperties {
+public class BloggerProperties implements IBloggerProperties {
     private Properties properties = null;
 
 	@Override
@@ -17,21 +17,21 @@ public class BloggerPropertiesFromFile implements IBloggerProperties {
 		return Integer.parseInt(this.properties.getProperty("cacheDuration"));
 	}
 	
-	public BloggerPropertiesFromFile() {
-		loadProperties();
+	public BloggerProperties(URL propertyFile) {
+		loadProperties(propertyFile);
 	}
 	
-	protected void loadProperties() {
-		ClassLoader loader = Thread.currentThread().getContextClassLoader();
-		URL propertyFileURL = loader.getResource("blogger.properties");
-		loadPropertiesFile(propertyFileURL);
-	}
+//	protected void loadProperties() {
+//		ClassLoader loader = Thread.currentThread().getContextClassLoader();
+//		URL propertyFileURL = loader.getResource("blogger.properties");
+//		loadPropertiesFile(propertyFileURL);
+//	}
 	
-	protected void loadPropertiesFile(URL propertyFileURL) {
+	private void loadProperties(URL propertyFile) {
 		properties = new Properties();
-		if (propertyFileURL != null) {
+		if (propertyFile != null) {
 	    	try {
-	    		properties.load(propertyFileURL.openStream());
+	    		properties.load(propertyFile.openStream());
 	    	} catch (IOException ex) {
 	    		ex.printStackTrace();
 	        }

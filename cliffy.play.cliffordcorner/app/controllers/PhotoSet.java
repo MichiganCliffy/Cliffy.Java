@@ -1,11 +1,11 @@
 package controllers;
 
 import java.util.*;
-
 import play.mvc.*;
 import views.html.*;
 import cliffy.common.*;
 import cliffy.data.*;
+import cliffy.web.cliffordcorner.*;
 import models.*;
 
 public class PhotoSet extends Controller {
@@ -14,7 +14,7 @@ public class PhotoSet extends Controller {
     	ArrayList<String> tags = new ArrayList<String>();
     	
     	PhotographAlbum photos = getAlbum(setId, tags);
-    	CliffordCornerNav nav = getNav();
+    	CliffordCornerNav nav = Repositories.getNav();
 		
         return ok(photoset.render(photos, nav));
     }
@@ -22,7 +22,7 @@ public class PhotoSet extends Controller {
     public static Result photoset(String setId) {
     	ArrayList<String> tags = new ArrayList<String>();
     	PhotographAlbum photos = getAlbum(setId, tags);
-    	CliffordCornerNav nav = getNav();
+    	CliffordCornerNav nav = Repositories.getNav();
     	
         return ok(photoset.render(photos, nav));
     }
@@ -31,7 +31,7 @@ public class PhotoSet extends Controller {
     	ArrayList<String> tags = new ArrayList<String>();
     	tags.add(tag);
     	PhotographAlbum photos = getAlbum(setId, tags);
-    	CliffordCornerNav nav = getNav();
+    	CliffordCornerNav nav = Repositories.getNav();
     	
         return ok(photoset.render(photos, nav));
     }
@@ -42,10 +42,6 @@ public class PhotoSet extends Controller {
     
     public static Result video(String setId, String secret, String id) {
     	return TODO;
-    }
-    
-    private static CliffordCornerNav getNav() {
-    	return new CliffordCornerNav();
     }
     
     private static PhotographAlbum getAlbum(String setId, List<String> tags) {

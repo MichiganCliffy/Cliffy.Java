@@ -1,11 +1,11 @@
 package controllers;
 
 import java.util.*;
-
 import play.mvc.*;
 import views.html.*;
 import cliffy.common.*;
 import cliffy.data.*;
+import cliffy.web.cliffordcorner.*;
 import models.*;
 
 public class Application extends Controller {
@@ -15,10 +15,7 @@ public class Application extends Controller {
 		String[] tags = {};
 		Blog posts = repo.getPosts(tags);
 		
-        return ok(index.render(posts, getNav()));
-    }
-    
-    private static CliffordCornerNav getNav() {
-    	return new CliffordCornerNav();
+		CliffordCornerNav nav = Repositories.getNav();
+        return ok(index.render(posts, nav));
     }
 }

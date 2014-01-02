@@ -1,4 +1,4 @@
-package models;
+package cliffy.web.cliffordcorner;
 
 public class CliffordCornerLink {
 	private String id;

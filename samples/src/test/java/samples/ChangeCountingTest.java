@@ -3,7 +3,7 @@ package samples;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class ChangeCounting {
+public class ChangeCountingTest {
 
 	@Test
 	public void test() {

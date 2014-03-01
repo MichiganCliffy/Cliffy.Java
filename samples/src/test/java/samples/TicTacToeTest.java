@@ -3,7 +3,7 @@ package samples;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-public class TicTacToeTests {
+public class TicTacToeTest {
 	@Test
 	public void inSameRowTest() {
 		TicTacToeMove a = new TicTacToeMove(3, 1, 1, "A");

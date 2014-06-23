@@ -1,26 +1,28 @@
-package cliffy.android.GeoQuiz;
+package cliffy.android.geoquiz;
 
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
+import android.widget.Button;
+import android.widget.Toast;
 
 public class QuizActivity extends ActionBarActivity {
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_quiz);
 
+		PlaceholderFragment fragment = new PlaceholderFragment();
+
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
-					.add(R.id.container, new PlaceholderFragment()).commit();
+					.add(R.id.container, fragment).commit();
 		}
 	}
 
@@ -49,6 +51,9 @@ public class QuizActivity extends ActionBarActivity {
 	 */
 	public static class PlaceholderFragment extends Fragment {
 
+		private Button mTrueButton;
+		private Button mFalseButton;
+		
 		public PlaceholderFragment() {
 		}
 
@@ -58,6 +63,29 @@ public class QuizActivity extends ActionBarActivity {
 			View rootView = inflater.inflate(R.layout.fragment_quiz, container,
 					false);
 			return rootView;
+		}
+		
+		@Override
+		public void onActivityCreated(Bundle savedInstanceState) {
+			super.onActivityCreated(savedInstanceState);
+
+			View view = getView();
+			
+			mTrueButton = (Button)view.findViewById(R.id.true_button);
+			mTrueButton.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					Toast.makeText(getActivity(), R.string.incorrect_toast, Toast.LENGTH_SHORT).show();
+				}
+			});
+			
+			mFalseButton = (Button)view.findViewById(R.id.false_button);
+			mFalseButton.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					Toast.makeText(getActivity(), R.string.correct_toast, Toast.LENGTH_SHORT).show();
+				}
+			});
 		}
 	}
 

@@ -52,6 +52,7 @@ public class QuizActivity extends ActionBarActivity {
 	 */
 	public static class PlaceholderFragment extends Fragment {
 
+		private static final String KEY_INDEX = "index";
 		private Button mTrueButton;
 		private Button mFalseButton;
 		private Button mNextButton;
@@ -80,6 +81,10 @@ public class QuizActivity extends ActionBarActivity {
 		public void onActivityCreated(Bundle savedInstanceState) {
 			super.onActivityCreated(savedInstanceState);
 
+			if (savedInstanceState != null) {
+				mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0);
+			}
+			
 			View view = getView();
 			
 			mTrueButton = (Button)view.findViewById(R.id.true_button);
@@ -123,6 +128,12 @@ public class QuizActivity extends ActionBarActivity {
 			});
 			
 			updateQuestion();
+		}
+		
+		@Override
+		public void onSaveInstanceState(Bundle savedInstanceState) {
+			super.onSaveInstanceState(savedInstanceState);
+			savedInstanceState.putInt(KEY_INDEX, mCurrentIndex);
 		}
 		
 		private void updateQuestion() {

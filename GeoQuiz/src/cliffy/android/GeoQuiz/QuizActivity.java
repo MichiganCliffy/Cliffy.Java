@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class QuizActivity extends ActionBarActivity {
@@ -53,6 +54,16 @@ public class QuizActivity extends ActionBarActivity {
 
 		private Button mTrueButton;
 		private Button mFalseButton;
+		private Button mNextButton;
+		private TextView mQuestionTextView;
+		private TrueFalse[] mQuestionBank = new TrueFalse[] {
+				new TrueFalse(R.string.question_oceans, true),
+				new TrueFalse(R.string.question_mideast, false),
+				new TrueFalse(R.string.question_africa, false),
+				new TrueFalse(R.string.question_americas, true),
+				new TrueFalse(R.string.question_asia, true)
+		};
+		private int mCurrentIndex = 0;
 		
 		public PlaceholderFragment() {
 		}
@@ -75,7 +86,7 @@ public class QuizActivity extends ActionBarActivity {
 			mTrueButton.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					Toast.makeText(getActivity(), R.string.incorrect_toast, Toast.LENGTH_SHORT).show();
+					checkAnswer(true);
 				}
 			});
 			
@@ -83,9 +94,54 @@ public class QuizActivity extends ActionBarActivity {
 			mFalseButton.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					Toast.makeText(getActivity(), R.string.correct_toast, Toast.LENGTH_SHORT).show();
+					checkAnswer(false);
 				}
 			});
+			
+			mQuestionTextView = (TextView)view.findViewById(R.id.question_text_view);
+			
+			int question = mQuestionBank[mCurrentIndex].getQuestion();
+			mQuestionTextView.setText(question);
+			
+			Button mPrevQuestion = (Button)view.findViewById(R.id.previous_button);
+			mPrevQuestion.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					mCurrentIndex = mCurrentIndex - 1;
+					if (mCurrentIndex < 0) mCurrentIndex = mQuestionBank.length - 1;
+					updateQuestion();
+				}
+			});
+			
+			Button mNextQuestion = (Button)view.findViewById(R.id.next_button);
+			mNextQuestion.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
+					updateQuestion();
+				}
+			});
+			
+			updateQuestion();
+		}
+		
+		private void updateQuestion() {
+			int question = mQuestionBank[mCurrentIndex].getQuestion();
+			mQuestionTextView.setText(question);
+		}
+		
+		private void checkAnswer(boolean userPressedTrue) {
+			boolean answerIsTrue = mQuestionBank[mCurrentIndex].isTrueQuestion();
+			
+			int messageResId = 0;
+			
+			if (userPressedTrue == answerIsTrue) {
+				messageResId = R.string.correct_toast;
+			} else {
+				messageResId = R.string.incorrect_toast;
+			}
+			
+			Toast.makeText(getActivity(), messageResId, Toast.LENGTH_SHORT).show();
 		}
 	}
 
